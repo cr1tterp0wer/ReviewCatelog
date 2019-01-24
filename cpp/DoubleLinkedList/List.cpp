@@ -6,30 +6,30 @@
 using namespace std;
 
 List::List(){
-  head = NULL;
-  tail = NULL;
+  head = nullptr;
+  tail = nullptr;
 }
 
 List::List( int d ){
   Node *n = new Node();
   n->data = d;
-  n->next = NULL;
-  n->prev = NULL;
+  n->next = nullptr;
+  n->prev = nullptr;
 
   head = n;
   tail = head;
 }
 
 List::~List(){
-  head = NULL;
+  head = nullptr;
 }
 
 void List::add( int d ){
   Node *temp = new Node;
   temp->data = d;
 
-  if( head == NULL ){
-    temp->next = NULL;
+  if( head == nullptr ){
+    temp->next = nullptr;
     temp->prev = tail;
   }else{
     temp->next = head;
@@ -42,9 +42,9 @@ void List::addToTail( int d ){
   
   Node *temp = new Node;
   temp->data = d;  
-  temp->next = NULL;
+  temp->next = nullptr;
 
-  if( tail == NULL ){
+  if( tail == nullptr ){
     temp->prev = temp;
   }else{
     tail->next = temp;
@@ -70,6 +70,9 @@ void List::removeAt( int index ){
     current = current->next;
   }
   before->next = current->next;
+  delete current;
+  delete current->next;
+  delete current->prev;
 }
 
 void List::resetTail(){
