@@ -73,7 +73,7 @@ void List::removeAt( int index ){
 }
 
 void List::resetTail(){
-  Node *current = new Node();
+  Node *current = head;
 
   //go to tail
   while( current->next != nullptr ){
