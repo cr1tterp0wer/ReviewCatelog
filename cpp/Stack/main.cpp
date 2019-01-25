@@ -6,23 +6,18 @@ using namespace std;
 int main(){
 
   Stack s;
-  
   s.push(1);
-  cout << s.peek() << endl;
-
   s.push(2);
-  cout << s.peek() << endl;
-
   s.push(3);
-  cout << s.peek() << endl;
-
   s.push(4);
-  cout << s.peek() << endl;
+  s.push(5);
 
-  s.pop();
-  cout << s.peek() << endl;
-  cout << s.peek() << endl;
-  cout << s.peek() << endl;
+  cout << s.pop() << endl 
+    << s.pop() << endl 
+    << s.pop() << endl 
+    << s.pop() << endl 
+    << s.pop() << endl ;
+
   return 0;
 }
 

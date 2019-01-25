@@ -13,7 +13,6 @@ Stack::Stack(){
 int Stack::pop(){
   int temp;
   
-  cout << head->data << endl;
   temp = this->head->data;
   this->head = head->next;
   return temp;
