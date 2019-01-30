@@ -1,12 +1,15 @@
 #include <iostream>
-#include "./List.h"
+#include "List.h"
+
 
 using namespace std;
 
+
+//Implementation of Singly Linked List<T>
 int main(){
 
-  List mylist(0);
-
+  List<int> mylist;
+  
   mylist.add(1);
   mylist.add(2);
   mylist.add(3);
@@ -17,17 +20,9 @@ int main(){
   mylist.add(8);
   mylist.add(9);
   mylist.add(10);
-
-  mylist.removeAt(2);
-  mylist.removeAt(0);
-
-
   mylist.display();
 
-
-
   return 0;
-
 }
 
 
