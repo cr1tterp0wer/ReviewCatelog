@@ -1,5 +1,4 @@
 #include <iostream>
-#include "./List/Stack/Stack.h"
 #include "./Calculator/Calculator.h"
 
 using namespace std;
@@ -7,7 +6,8 @@ using namespace std;
 int main(){
 
   Calculator c;
-
+  c.getInput();
+  c.calculate();
 
   return 0;
 }

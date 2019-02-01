@@ -1,16 +1,17 @@
 #ifndef CALCULATOR_H
 #define CALCULATOR_H
-
-#include "../List/Stack/Stack.h"
+#include "./Stack/Stack.h"
 
 class Calculator{
-  private:
 
+  private:
+   Stack< char > inputStack;
   public:
-    Calculator();
-    ~Calculator();
-    void start();
-    void end();
+    void getInput();
+    void calculate();
+    int add( int a, int b );
+    int sub(int a, int b);
+    int div(int a, int b);
+    int mult(int a, int b);
 };
 #endif
-
