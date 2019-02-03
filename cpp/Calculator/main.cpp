@@ -6,12 +6,7 @@ using namespace std;
 int main(){
 
   Calculator c;
-  c.getInput();
-  c.calculate();
-
+  
+c.infixToPostFix();
   return 0;
 }
-
-
-
-
