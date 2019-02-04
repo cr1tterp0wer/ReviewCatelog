@@ -52,42 +52,29 @@ string * Calculator::postfixStringBuilder( string infix ){
 
 
   while( !tokens.isEmpty() ){
- 
-//    stackPrec = getPrecedence( ops.peek() ); 
+
+    // stackPrec == 0 means it's empty
+    stackPrec = ( ops.getSize() == 0  ) ? 0 : getPrecedence( ops.peek() );
     tkPrec    = getPrecedence( tokens.peek() ); 
-    tokens.pop();
-
-
-//    cout << stackPrec << endl;
-    cout << tkPrec << endl; 
-  
-  }
-
-  /*
-
-  while( !tokens.isEmpty() ){
-    cout << tokens.pop();
 
     if( tkPrec == 0 ){
-      cout << tokens.peek();
       *result += tokens.pop();
-    } 
-    else if( tkPrec > stackPrec ){ 
-      cout << tokens.peek();
-      ops.push( tokens.pop() ); 
+    }
+    else if( tkPrec > stackPrec ){
+      //put on stack
+      ops.push(tokens.pop());
     }else{
-
-      //pop everything
-      while( ops.getSize() > 0 ){
-        cout << ops.peek();
-        *result += ops.pop(); 
+      while( stackPrec >= tkPrec ){
+        *result += ops.pop();
+        stackPrec = ( ops.getSize() == 0  ) ? 0 : getPrecedence( ops.peek() );
       } 
-      //put remainder in stack
-      ops.push( tokens.pop() );
+      ops.push(tokens.pop());
     }
   }
-*/
-  
+  while( ops.getSize() > 0 ){
+    *result += ops.pop();
+  }
+
   return result;
 }
 
@@ -96,8 +83,8 @@ void Calculator::infixToPostFix(){
   cout << "enter equation: ";
   infixInput = getInput();
   
-  std::string * postfix = postfixStringBuilder( infixInput );
-  cout << *postfix; 
+  string * postfix = postfixStringBuilder( infixInput );
+  cout << "Postfix: " << *postfix << endl;
 }
 
 List<std::string> Calculator::tokenizeString( std::string str ){
