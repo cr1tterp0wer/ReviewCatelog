@@ -1,6 +1,6 @@
 #ifndef LIST_H
 #define LIST_H
-typedef struct Node;
+struct Node;
 
 template< typename T >
 class List{
@@ -9,7 +9,7 @@ class List{
       Node *next = nullptr;
       T data;
     };
-    List<T>::Node * head;
+    List<T>::Node * head = nullptr;
     int length;
 
   public:
@@ -36,7 +36,6 @@ using namespace std;
 
 template <typename T>
 List<T>::List(){
-  head->next = nullptr;
   length = 0;
 }
 
@@ -44,7 +43,6 @@ template <typename T>
 List<T>::List( T d ){
   List<T>::Node *n = new Node;
   n->data = d;
-  n->next = nullptr;
   head = n;
 }
 
@@ -66,12 +64,13 @@ void List<T>::push( T d ){
 
 template <typename T>
 void List<T>::append( T d ){
-
+ 
   List<T>::Node *current = head;
   List<T>::Node *temp = new Node;
   temp->data = d;
 
-  if( this->isEmpty() ){
+  if( head == nullptr ){
+    head = new Node();
     head->data = d;
     length++; 
     return;
@@ -150,7 +149,7 @@ void List<T>::removeAt( int i ){
 
 template <typename T>
 bool List<T>::isEmpty(){
-  return length <= 0;
+  return ( length <= 0 );
 }
 
 template <typename T>

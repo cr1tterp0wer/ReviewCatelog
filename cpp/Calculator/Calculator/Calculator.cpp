@@ -30,23 +30,83 @@ void Calculator::getInputStatic(){
 //  mult && div  */
 //  add && sub  +-
 
-int Calculator::getPrecendence( char op ){
-  if( op == '^' ){
+int Calculator::getPrecedence( std::string op ){
+  if( op == "^" ){
     return 3; 
-  }else if( op == '*' || op == '/'){
+  }else if( op == "*" || op == "/"){
     return 2; 
-  }else if( op == '+' || op == '-' ){
+  }else if( op == "+" || op == "-" ){
     return 1;  
   }
   return 0;
 }
 
-List<string>  Calculator::tokenizeString( string str ){
+string * Calculator::postfixStringBuilder( string infix ){
   
-  List<string>  tokens; 
-  string current;
+  int stackPrec;
+  int tkPrec; 
+
+  Stack<std::string> ops; 
+  List<std::string> tokens = tokenizeString( infix );
+  std::string * result     = new string("");
+
+
+  while( !tokens.isEmpty() ){
+ 
+//    stackPrec = getPrecedence( ops.peek() ); 
+    tkPrec    = getPrecedence( tokens.peek() ); 
+    tokens.pop();
+
+
+//    cout << stackPrec << endl;
+    cout << tkPrec << endl; 
+  
+  }
+
+  /*
+
+  while( !tokens.isEmpty() ){
+    cout << tokens.pop();
+
+    if( tkPrec == 0 ){
+      cout << tokens.peek();
+      *result += tokens.pop();
+    } 
+    else if( tkPrec > stackPrec ){ 
+      cout << tokens.peek();
+      ops.push( tokens.pop() ); 
+    }else{
+
+      //pop everything
+      while( ops.getSize() > 0 ){
+        cout << ops.peek();
+        *result += ops.pop(); 
+      } 
+      //put remainder in stack
+      ops.push( tokens.pop() );
+    }
+  }
+*/
+  
+  return result;
+}
+
+void Calculator::infixToPostFix(){
+
+  cout << "enter equation: ";
+  infixInput = getInput();
+  
+  std::string * postfix = postfixStringBuilder( infixInput );
+  cout << *postfix; 
+}
+
+List<std::string> Calculator::tokenizeString( std::string str ){
+  
+  List<std::string> tokens;
+  std::string current = "";
 
   for(int i = 0; i < str.length(); i++ ){
+
     switch(str[i]){
       case '(' :
       case ')' :
@@ -71,31 +131,14 @@ List<string>  Calculator::tokenizeString( string str ){
   } 
   if(current != "")
     tokens.append(current);
- 
+
   return tokens;
 }
 
-string * Calculator::infixStringBuilder(string str){
-
-  List<string> * tokens = tokenizeString( str );
-  string result  = new string("");
-
-  while( !tokens.isEmpty() ){
-    result += tokens.pop();
-  }
-  return result;
-}
-
-void Calculator::infixToPostFix(){
-  cout << "enter equation: ";
-  cin >> infixInput;
-  
-  string postfix = infixStringBuilder( infixInput );
-  cout << postfix;
-}
-
-void Calculator::getInput(){
-
+string Calculator::getInput(){
+  string s;
+  cin >> s;
+  return s;
 }
 
 void Calculator::calculateStatic(){

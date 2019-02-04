@@ -6,7 +6,7 @@ using namespace std;
 int main(){
 
   Calculator c;
-  
-c.infixToPostFix();
+  c.infixToPostFix();
+
   return 0;
 }

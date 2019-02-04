@@ -24,9 +24,7 @@ class List{
 
 //IMPLEMENTATION
 #include <iostream>
-
 using namespace std;
-
 
 template <typename T>
 List<T>::List(){
@@ -88,7 +86,6 @@ void List<T>::removeAt( int index ){
   before->next = current->next;
 }
 
-
 template <typename T>
 void List<T>::display(){
   Node *current = new Node();
@@ -99,6 +96,5 @@ void List<T>::display(){
     current = current->next;
   }
 }
-
 
 #endif
