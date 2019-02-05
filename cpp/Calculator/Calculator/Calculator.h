@@ -9,20 +9,23 @@ class Calculator{
   private:
     Stack< char > inputStack;
     Stack< char > opStack;
-    std::string infixInput;
-    std::string postfixInput;
+    List< string > postfixTokens;
 
   public:
     List<string>  tokenizeString( std::string str);
     int getPrecedence( std::string op );
     void getInputStatic();
     string getInput();
+    void start();
+    int calculate( );
+    std::string calc( std::string opCode, std::string A, std::string B );
     void calculateStatic();
-    void infixToPostFix();
+    std::string infixToPostFix();
     string * postfixStringBuilder( string str );
     int add( int a, int b );
     int sub( int a, int b );
     int div( int a, int b );
     int mult( int a, int b );
+    int pow( int a, int b );
 };
 #endif

@@ -49,10 +49,11 @@ List<T>::List( T d ){
 template <typename T>
 void List<T>::push( T d ){
   List<T>::Node *current = new Node;
-  
-  if( this->isEmpty() ){
+ 
+  if( head == nullptr || this->isEmpty()  ){
+    head = new Node();
     head->data = d;
-    length++;
+    length++; 
     return;
   }
 

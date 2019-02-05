@@ -37,6 +37,10 @@ int Calculator::getPrecedence( std::string op ){
     return 2; 
   }else if( op == "+" || op == "-" ){
     return 1;  
+  }else if( op == "(" ){
+    return -1;
+  }else if( op == ")" ){
+    return -2;
   }
   return 0;
 }
@@ -50,21 +54,36 @@ string * Calculator::postfixStringBuilder( string infix ){
   List<std::string> tokens = tokenizeString( infix );
   std::string * result     = new string("");
 
-
   while( !tokens.isEmpty() ){
 
-    // stackPrec == 0 means it's empty
     stackPrec = ( ops.getSize() == 0  ) ? 0 : getPrecedence( ops.peek() );
     tkPrec    = getPrecedence( tokens.peek() ); 
 
     if( tkPrec == 0 ){
+      if( tokens.peek() != "" ){
+        postfixTokens.append( tokens.peek() );
+      }
       *result += tokens.pop();
     }
+    else if( tkPrec < 0 ){
+      if( tkPrec == -1 ){
+        ops.push( tokens.pop() );
+      }else if( tkPrec == -2 ){
+
+        while( stackPrec != -1 ){
+          postfixTokens.append( ops.peek() );
+          *result += ops.pop();
+          stackPrec = ( ops.getSize() == 0  ) ? 0 : getPrecedence( ops.peek() );
+        }
+        ops.pop();
+        tokens.pop();
+      }
+    }
     else if( tkPrec > stackPrec ){
-      //put on stack
       ops.push(tokens.pop());
     }else{
       while( stackPrec >= tkPrec ){
+        postfixTokens.append( ops.peek() );
         *result += ops.pop();
         stackPrec = ( ops.getSize() == 0  ) ? 0 : getPrecedence( ops.peek() );
       } 
@@ -72,20 +91,87 @@ string * Calculator::postfixStringBuilder( string infix ){
     }
   }
   while( ops.getSize() > 0 ){
+    postfixTokens.append( ops.peek() );
     *result += ops.pop();
   }
 
   return result;
 }
 
-void Calculator::infixToPostFix(){
+std::string Calculator::infixToPostFix(){
 
   cout << "enter equation: ";
-  infixInput = getInput();
-  
+
+  std::string infixInput = getInput();
   string * postfix = postfixStringBuilder( infixInput );
+
   cout << "Postfix: " << *postfix << endl;
+
+  return *postfix; 
 }
+
+void Calculator::start(){
+  
+  cout << "enter equation: ";
+  std::string postfix = infixToPostFix();
+  
+  int result = calculate();
+  cout << endl << "RESULT: " << result << endl;
+}
+
+int Calculator::calculate( ){
+  
+  List<std::string> postList = postfixTokens; 
+  List<std::string> stack;
+  int opPrec = getPrecedence( postList.peek() );
+  std::string A;
+  std::string B;
+
+  while( !postList.isEmpty() ){
+    opPrec = getPrecedence( postList.peek() );
+    if( opPrec == 0 ){
+      stack.push( postList.pop() );
+    }
+    else{
+      B = stack.pop();
+      A = stack.pop();
+      stack.push( calc( postList.pop(), A, B ) );
+    }
+  }
+
+  return stoi( stack.pop() );
+}
+
+std::string Calculator::calc( std::string opCode, std::string A, std::string B ){
+
+  int res;
+  int op_a = stoi( A );
+  int op_b = stoi( B );
+
+  switch( opCode[0] ){
+    case '+':
+      res = add( op_a, op_b );
+      break;
+    case '-':
+      res = sub( op_a, op_b );
+      break;
+    case '*':
+      res = mult( op_a, op_b );
+      break;
+    case '/':
+      res = div( op_a, op_b );
+      break;
+    case '^':
+      res = pow( op_a, op_b );
+      break;
+    default:
+      res = 0;
+      break;
+  }
+
+  return std::to_string(res);
+}
+
 
 List<std::string> Calculator::tokenizeString( std::string str ){
   
@@ -127,7 +213,6 @@ string Calculator::getInput(){
   cin >> s;
   return s;
 }
-
 void Calculator::calculateStatic(){
 
   int b = (int)inputStack.pop() - '0';    
@@ -168,6 +253,14 @@ int Calculator::div( int a, int b ){
 
 int Calculator::mult( int a, int b ){
   return a * b;
+}
+int Calculator::pow( int a, int b ){
+
+  int sum = a;
+  for( int i = 0; i < b; i++ ){
+    sum *= a;
+  }
+  return sum;
 }
 
 
