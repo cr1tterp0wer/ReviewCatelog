@@ -5,23 +5,42 @@
 
 using namespace std;
 
-void Calculator::getInputStatic(){
+void Calculator::start(){
   
-  char input;
-  char op;
-
-  cout << endl << "Enter operator(+,-,/,*):"; 
-  cin >> op;
-  inputStack.push(op);
-
-  cout << "Enter first Number:";
-  cin >> input;
+  cout << "enter equation: ";
+  std::string postfix = infixToPostFix();
   
-  inputStack.push(input);
+  int result = calculate();
+  cout << endl << "RESULT: " << result << endl;
+}
 
-  cout << endl << "Enter Second Number:";
-  cin >> input;
-  inputStack.push(input);
+string Calculator::getInput(){
+  string s;
+  cin >> s;
+  return s;
+}
+
+int Calculator::calculate(){
+  
+  List<std::string> postList = postfixTokens; 
+  List<std::string> stack;
+  int opPrec = getPrecedence( postList.peek() );
+  std::string A;
+  std::string B;
+
+  while( !postList.isEmpty() ){
+    opPrec = getPrecedence( postList.peek() );
+    if( opPrec == 0 ){
+      stack.push( postList.pop() );
+    }
+    else{
+      B = stack.pop();
+      A = stack.pop();
+      stack.push( calc( postList.pop(), A, B ) );
+    }
+  }
+
+  return stoi( stack.pop() );
 }
 
 //  Precendence Order
@@ -43,6 +62,16 @@ int Calculator::getPrecedence( std::string op ){
     return -2;
   }
   return 0;
+}
+
+std::string Calculator::infixToPostFix(){
+
+  std::string infixInput = getInput();
+  string * postfix = postfixStringBuilder( infixInput );
+
+  cout << "Postfix: " << *postfix << endl;
+
+  return *postfix; 
 }
 
 string * Calculator::postfixStringBuilder( string infix ){
@@ -98,48 +127,6 @@ string * Calculator::postfixStringBuilder( string infix ){
   return result;
 }
 
-std::string Calculator::infixToPostFix(){
-
-  std::string infixInput = getInput();
-  string * postfix = postfixStringBuilder( infixInput );
-
-  cout << "Postfix: " << *postfix << endl;
-
-  return *postfix; 
-}
-
-void Calculator::start(){
-  
-  cout << "enter equation: ";
-  std::string postfix = infixToPostFix();
-  
-  int result = calculate();
-  cout << endl << "RESULT: " << result << endl;
-}
-
-int Calculator::calculate( ){
-  
-  List<std::string> postList = postfixTokens; 
-  List<std::string> stack;
-  int opPrec = getPrecedence( postList.peek() );
-  std::string A;
-  std::string B;
-
-  while( !postList.isEmpty() ){
-    opPrec = getPrecedence( postList.peek() );
-    if( opPrec == 0 ){
-      stack.push( postList.pop() );
-    }
-    else{
-      B = stack.pop();
-      A = stack.pop();
-      stack.push( calc( postList.pop(), A, B ) );
-    }
-  }
-
-  return stoi( stack.pop() );
-}
-
 std::string Calculator::calc( std::string opCode, std::string A, std::string B ){
 
   int res;
@@ -169,7 +156,6 @@ std::string Calculator::calc( std::string opCode, std::string A, std::string B )
 
   return std::to_string(res);
 }
-
 
 List<std::string> Calculator::tokenizeString( std::string str ){
   
@@ -205,38 +191,6 @@ List<std::string> Calculator::tokenizeString( std::string str ){
 
   return tokens;
 }
-
-string Calculator::getInput(){
-  string s;
-  cin >> s;
-  return s;
-}
-void Calculator::calculateStatic(){
-
-  int b = (int)inputStack.pop() - '0';    
-  int a = (int)inputStack.pop() - '0';
-
-  switch( inputStack.pop() ){
-    case '+':
-      inputStack.push(add( a, b ));
-      break;
-    case '-':
-      inputStack.push(sub( a, b ));
-      break;
-    case '/':
-      inputStack.push(div( a, b ));
-      break;
-    case '*':
-      inputStack.push(mult( a, b ));
-      break;
-    default:
-      break;
-  }
-
-  cout << "The answer is: " << inputStack.pop();
-  cout << endl;
-}
-
 int Calculator::add( int a, int b ){
   return a + b;
 }
@@ -260,7 +214,4 @@ int Calculator::pow( int a, int b ){
   }
   return sum;
 }
-
-
-
 
