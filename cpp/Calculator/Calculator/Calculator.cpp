@@ -100,8 +100,6 @@ string * Calculator::postfixStringBuilder( string infix ){
 
 std::string Calculator::infixToPostFix(){
 
-  cout << "enter equation: ";
-
   std::string infixInput = getInput();
   string * postfix = postfixStringBuilder( infixInput );
 
