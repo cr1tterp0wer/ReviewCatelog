@@ -7,16 +7,16 @@ template< typename T > class Stack {
     int size;
     struct node{
       node * next;
-      int data;
+      T data;
     };
     node * head;
   
   public:
     Stack();
     
-    int pop();
-    void push( int d );
-    int peek();
+    T pop();
+    void push( T d );
+    T peek();
     int getSize();
 };
 
@@ -30,9 +30,9 @@ Stack<T>::Stack(){
 }
 
 template<typename T>
-int Stack<T>::pop(){
+T Stack<T>::pop(){
 
-  int temp;
+  T temp;
   temp = this->head->data;
   this->head = head->next;
   size--;
@@ -40,7 +40,7 @@ int Stack<T>::pop(){
 }
 
 template<typename T>
-void Stack<T>::push( int d ){
+void Stack<T>::push( T d ){
 
   node *n = new node();
   n->data = d;
@@ -51,7 +51,7 @@ void Stack<T>::push( int d ){
 }
 
 template<typename T>
-int Stack<T>::peek(){return head->data;}
+T Stack<T>::peek(){return head->data;}
 
 template<typename T>
 int Stack<T>::getSize(){return size;}

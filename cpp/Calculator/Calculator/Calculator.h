@@ -7,22 +7,22 @@
 class Calculator{
 
   private:
-    Stack< char > inputStack;
-    Stack< char > opStack;
-    std::string infixInput;
-    std::string postfixInput;
+    List< string > postfixTokens;
 
   public:
-    List<string>  tokenizeString( std::string str);
-    int getPrecendence( char op );
-    void getInputStatic();
-    void getInput();
-    void calculateStatic();
-    void infixToPostFix();
-    string * infixStringBuilder( string str );
+    void start();
+    string getInput();
+    int calculate();
+    int getPrecedence( std::string op );
+    List<string> tokenizeString( std::string str);
+    std::string calc( std::string opCode, std::string A, std::string B );
+    std::string infixToPostFix();
+    string * postfixStringBuilder( string str );
+
     int add( int a, int b );
     int sub( int a, int b );
     int div( int a, int b );
     int mult( int a, int b );
+    int pow( int a, int b );
 };
 #endif
