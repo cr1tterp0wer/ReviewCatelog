@@ -1,0 +1,18 @@
+This directory contains the basic files necessary to create
+the Simple Machine simulator. It includes the following:
+
+- this README
+- a Makefile to make sim, the simple machine simulator. Use make install to
+    make the simulator. It installs the simulator in this directory.
+- the source files sim.c and simulate.c and header files inst.h and sim.h
+- the tests directory with simple sim files
+- the doc directory with the SimpleMachine documents
+
+All is freely distributed and copied, so long as the copyright restrictions
+in the source files are honored. 
+
+Enjoy!
+
+-- Greg Boyd
+CCSF, 2017
+

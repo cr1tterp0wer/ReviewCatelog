@@ -1,0 +1,36 @@
+#
+# this program compares two data values
+# and chooses the largest. The
+# two data values are at offsets 0xA(10) and 0xB(11)
+# The result is stored at offset 0xC(12)
+# 
+# Algorithm:
+# if (val1 > val2) larger = val1
+# else larger = val2;
+#
+# Rewritten:
+# if (0 > (val2-val1)) goto val1gtr;
+# larger=val2
+# goto val2gtr;
+# val1gtr: larger=val1;
+# val2gtr:
+#
+# Here's the annotated code:
+# if (0 > (val2-val1)) goto val1gtr;
+0x100a    # (addr=0) load VAL1
+0x900b    # sub VAL2
+0x4000    # mvac 
+0x6007    # (addr=3)jlt val1gtr
+# larger=val2;
+0x100b    # load VAL2
+0x200c    # store LARGER
+# goto val2gtr;
+0x7009    # jmp val2gtr
+# val1gtr: larger=val1;
+0x100a    # (addr=7)val1gtr: load VAL1 
+0x200c    # store LARGER
+# val2gtr:
+0x0000    # val1gtr: halt
+0xFFFB    # (addr=0xA) VAL1:first operand
+0xFFF0    # (addr=0xB) VAL2:second operand
+0x0000    # (addr=0xC) LARGER

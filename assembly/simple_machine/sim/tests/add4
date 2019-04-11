@@ -1,0 +1,24 @@
+#
+# this program adds four unsigned integers
+# since addition is commutative, we can take
+# a simple shortcut: e.g.,
+#      accum = accum + memory
+# is the same as 
+#      accum = memory + accum
+#
+0x100a	# (0) LOAD ZERO - set accumulator to zero
+0x800b  # ADD INT1 - add first int
+0x800c  # ADD INT2 - add second int
+0x800d  # ADD INT3 - add third int
+0x800e  # Add INT4 - add fourth int
+0x200f  # (5) STORE RESULT - store result
+0x0
+0x0
+0x0	# note some area is left between instructions and data
+0x0	# just in case we want more instructions later.
+0x0	# (0xA) ZERO: - the constant value zero
+0x4	# (0xB) INT1:
+0x8 	# (0xC) INT2:
+0x10	# (0xD) INT3:
+0x20	# (0xE) INT4: fourth int
+0x0	# (0xF) RESULT:

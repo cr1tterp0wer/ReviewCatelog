@@ -1,0 +1,29 @@
+0xB00B #0 Put 11 into accum
+0x4000 #1 Move 11 into ctr
+
+0xB00F #2 Load start addr of Arr (LOOP START) 
+0x3000 #3 accum = ctr + accum
+0xE000 #4 Move value from accum -> aReg 
+0xC000 #5 accum = mem[aReg] 
+0x800E #6 ADD total   
+0x200E #7 STORE total
+0x500B #8 JEQ 12 END Loop (jump to halt below)
+0xA000 #9 DEC  
+0x7002 #10 JMP 2 Loop (jump to top)
+0x0000 #11
+0x0000 #12
+0x0000 #13
+0x0000 #14 int total;
+0x0001 #15 1 start of array
+0x0002 #16 2
+0x0003 #17 3
+0x0004 #18 4
+0x0005 #19 5
+0x0006 #20 6
+0x0007 #21 7
+0x0008 #22 8
+0x0009 #23 9
+0x000A #24 10
+0x000B #25 11
+0x000C #26 12 end of array
+

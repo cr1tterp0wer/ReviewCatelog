@@ -1,0 +1,42 @@
+
+TEST FILES FOR sim.
+
+These test cases are discussed in this file from 
+simplest to hardest. It is suggested you implement them
+in this order. Each successive test requires the instructions
+from the previous test.
+
+This is an incomplete set. If you want to write a test case
+for the simple machine that tests some instructions well for a few
+points extra credit, see me. I would like to add some tests.
+
+All tests require the HALT instruction be implemented.
+
+1) load and store. Requires LOAD STORE
+copy1 	- copy one word from A to B
+swap2   - exchange words A and B
+loadstore - move three words and zero the originals.
+
+2) add, subtract: ADD, SUB
+sub4 - subtract four integers from zero
+add4
+
+3) branches: JEQ JLT JMP
+larger - chooses the greater of two numbers (tests jlt only)
+
+4) use of the counter: DEC, ADDC, MVAC
+there are no specific tests for these.
+
+5) indirection: LA LIA SIA MVAA
+the indirect and indirec1 tests are versions of copy1 that
+test indirection.
+
+6) putting it all together: does a loop
+addloop - does the same as add4, but in a loop (adds four integers)
+addloop1 - uses the same loop as addloop, but adds an array of 10 ints.
+subloop - these are the same as addloop, but use subtraction.
+subloop1 - 
+
+fault - faults.
+
+-

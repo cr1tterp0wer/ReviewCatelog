@@ -1,0 +1,32 @@
+#
+# this test case simply does loads
+# and stores. It effectively acts like it
+# moves three memory words from one place
+# to another, zeroing out the originals.
+#
+# DEST1=SOURCE1; SOURCE1=0
+0x1010 # (0)LOAD SOURCE1
+0x2013 # STORE DEST1
+0x100f # LOAD ZERO
+0x2010 # STORE SOURCE1
+# DEST2=SOURCE2; SOURCE2=0
+0x1011 # LOAD SOURCE2
+0x2014 # STORE DEST2
+0x100f # (6)LOAD ZERO
+0x2011 # STORE SOURCE2
+# DEST3=SOURCE3; SOURCE3=0
+0x1012 # LOAD SOURCE3
+0x2015 # STORE DEST3
+0x100f # LOAD ZERO
+0x2012 # STORE SOURCE3
+0x0 # HALT
+0x0 # pad words
+0x0 #
+0x0 # (0xF) ZERO:
+0xa # SOURCE1:
+0x1000 # SOURCE2:
+0xcccc # SOURCE3:
+0xabcd # (0x13) DEST1:
+0xdeff # DEST2:
+0x0101 # DEST3:
+

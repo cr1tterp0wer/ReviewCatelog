@@ -1,0 +1,11 @@
+#
+# this first test case simply copies
+# a data word from one location to another
+# the first word is always address 0, the
+# second at address 1, etc.
+#
+0x1003  # (address 0) load word to copy from address 3
+0x2004  # (address 1) store it in new location (address 4)
+0x0000  # halt
+0x4040  # (address 3) the word to copy
+0x0000  # (address 4) the location to copy to

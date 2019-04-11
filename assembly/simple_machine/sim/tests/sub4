@@ -1,0 +1,36 @@
+#
+# this program subtracts four integers from zero.
+# since subtraction is not commutative, we must
+# do it the long way, storing the intermediate result
+# each time. (Remember SUB NUM subtracts the contents
+# of the accumulator from NUM and puts the result in the
+# accumulator.)
+#
+# RESULT = 0
+0x1010	# LOAD ZERO - set accumulator to zero
+0x2015	# STORE RESULT 
+# RESULT -= INT1
+0x1011  # LOAD INT1 - load first int
+0x9015  # SUB RESULT - subtract from result
+0x2015  # (4) STORE RESULT - store in result
+# and repeat the previous three instruction three more times
+# RESULT -= INT2
+0x1012  # load second int
+0x9015  # subtract from result
+0x2015  # store in result
+# RESULT -= INT3
+0x1013  # load third int
+0x9015  # subtract from result
+0x2015  # (0xA) store in result
+# RESULT -= INT4
+0x1014  # load fourth int
+0x9015  # subtract from result
+0x2015  # store in result
+0x0	# (0xe) HALT
+0x0	# (0xf) pad 
+0x0	# (0x10) ZERO: 
+0x4	# INT1: first int
+0x8	# INT2: second int
+0x10	# INT3: third int
+0x20	# INT4: fourth int
+0x0	# RESULT:

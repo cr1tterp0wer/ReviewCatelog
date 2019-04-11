@@ -1,0 +1,24 @@
+#
+# this program exchanges two words A and B
+# it needs a temporary location
+#
+# Algorithm:
+#   temp=a;
+#   a=b;
+#   b=temp;
+#
+# TEMP=a
+0x1007	# load A
+0x2009  # STORE TEMP - save it in temporary location
+# A=B
+0x1008	# (2)load B
+0x2007  # STORE A - save it in A
+# B=TEMP
+0x1009  # LOAD TEMP - load temporary (old A)
+0x2008  # STORE B -save it in B
+0x0000  # halt
+# data area follows
+0x1234  # (7) A:
+0x4321  # (8) B:
+0x0     # TEMP:
+

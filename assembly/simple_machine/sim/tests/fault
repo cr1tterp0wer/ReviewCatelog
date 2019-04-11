@@ -1,0 +1,6 @@
+#
+# fault - this program causes a fault by loading
+# from an illegal address
+#
+0x1004 	# LOAD 4 (memory address 4 is undefined)
+0x0

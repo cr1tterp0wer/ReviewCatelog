@@ -1,0 +1,22 @@
+#
+# this test case simply copies
+# a data word from one location to another
+# using indirection. (it is a modified 
+# version of the copy1 test)
+#
+# Algorithm:  *(DESTADDR) = SOURCE
+0x100C  # LOAD PTR (get the pointer to DEST)
+0xE000  # MVAA  (move PTR to areg)
+0x100A  # LOAD SOURCE
+0xD000  # SIA
+0x0     # HALT
+# pad words
+0x0
+0x0
+0x0
+0x0
+0x0
+0x40    # SOURCE (0xA): - the word to copy
+0x20    # DEST (0xB): the destination
+0xB     # PTR (address 0xC)
+

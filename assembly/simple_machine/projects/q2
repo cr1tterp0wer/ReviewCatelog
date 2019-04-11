@@ -1,0 +1,19 @@
+0x100a  #(0) loads zero to accumulator 
+0x800b	#(1) adds number 1
+0x800c	#(2) adds value 2
+0x800d	#(3) ADD VALUE 3
+0x200f	#(4) STORES SUM OF CHOSEN VALUES
+0x0000	#(5)
+0x0	#(6)
+0x0	#(7)
+0x0	#(8)
+0x0	#(9)
+0x0000	#(a) #CONSTANT 0
+0x0001	#(b) #INT 1
+0x0004  #(c) #INT 2
+0x000C	#(d) #INT 3
+0x001B	#(e) #INT 4
+0x0000	#(f) #SPACE FOR RESULT TO BE STORED IN
+
+	
+	

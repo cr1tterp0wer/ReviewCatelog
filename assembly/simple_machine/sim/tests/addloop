@@ -1,0 +1,39 @@
+#
+# this program sums an array.
+# the instr area and data area are 
+# separated by a few nulls
+#
+0xb000	# LA 0 [0]
+0x2012	# STORE RESULT	# result set to zero
+0xb001	# LA 1
+0x9011	# SUB NITEMS 
+0x4000	# MVAC [4]			# ctr is initialized with NITEMS-1
+0x600e	# loop: JLT END	# if (ctr < 0) goto END
+0xb013
+0x3000
+0xe000  # [8[
+0xc000
+0x8012
+0x2012
+0xa000
+0x7005
+0x0     # [0xe]
+#
+# the offset is 15(0xF) here. The data area starts
+# at 0x11, so we need two pad words
+# these come in handy if we need more instructions.
+0x0000
+0x0000
+#
+# the data area: offset is 0x11
+#
+0x0008  # NITEMS: The number of elements
+0x0000  # RESULT:
+0x0004  # (ADDR=0x13)array[0]
+0x0008  # array[1]
+0x0010  # array[2]
+0x0040  # array[3]
+0xFFFD  # array[4]
+0x0009  # array[5]
+0xFEDC  # array[6]
+0x0120  # array[7]

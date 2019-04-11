@@ -1,0 +1,19 @@
+#
+# this first test case simply copies
+# a data word from one location to another
+#
+# Algorithm:  DEST = SOURCE
+0x100A	# (0)LOAD SOURCE - get word to copy
+0x200B	# (1)STORE DEST - put it where it goes
+0x0000	# halt
+# pad words
+0x0
+0x0
+0x0
+0x0
+0x0
+0x0
+0x0
+0x40	# (0xA) SOURCE: - the word to copy
+0x20	# (0xB) DEST: - the location to copy to
+

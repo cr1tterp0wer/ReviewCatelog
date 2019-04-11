@@ -1,0 +1,26 @@
+#
+# Algorithm:
+# 
+# int aval[NITEMS]; int i;
+# for (i=0; i<NITEMS; i++) 
+# if (aval[i] < 0) aval[i] = -aval[i];
+#
+# Rewritten:
+#for (i=NITEMS-1;i>=0;i--) 
+#if (aval[i] < 0) aval[i] = -aval[i];
+#
+# using gotos:
+# i=NITEMS-1
+# loop: if (i < 0) goto end;
+# ptr=&aval[i];
+# i--; 
+# temp = *ptr;
+# if (temp < 0) goto aval;
+# goto loop
+# aval: temp=-temp
+# *ptr=temp	# THERE IS NO SM INSTRUCTION FOR THIS!
+# goto loop
+# end:
+
+
+
