@@ -3,7 +3,7 @@
 class Game{
 
   protected:
-    const int DELAY = 100;
+    const int DELAY = 16;
     int window_width;
     int window_height; 
     char* title; 
@@ -31,7 +31,6 @@ class Game{
       }
       return 0;  
     }
-
 
     int initRenderer(){
 

@@ -8,7 +8,7 @@ using namespace std;
 class GameOfLife : public Game{
 
    private:
-     const int CELL_SIZE = 2;
+     const int CELL_SIZE = 5;
      SDL_Rect rect;
      vector<Cell> cells;
      int pop;
@@ -80,13 +80,13 @@ class GameOfLife : public Game{
 
      void render(){
        
-        // Change color to blue
-        SDL_SetRenderDrawColor( renderer, 0, 0, 255, 255 );
+        // Change color to black
+        SDL_SetRenderDrawColor( renderer, 31, 31, 54, 0 );
         // Clear the window 
         SDL_RenderClear( renderer );
 
         // Change color to green + draw rect
-        SDL_SetRenderDrawColor( renderer, 0, 255, 0, 255 );
+        SDL_SetRenderDrawColor( renderer, 240, 240, 101, 255 );
 
         //RENDER CELLS
         for ( int i = 0; i < pop; i++ ){
