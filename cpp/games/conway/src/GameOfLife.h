@@ -63,12 +63,11 @@ class GameOfLife : public Game{
            live_count += cells.at( i + (row_width) - 1 ).getIsAlive() ? 1 : 0;
          }
 
-         //1. Spawns
+         //1. Spawns + Survival
          if( live_count == 3 ){
            tmp.at( i ).spawn();
          }
-         //2. Death by lonliness
-         //3. Death by overcrowding
+         //2. Death by lonliness + overcrowding
          else if( live_count <= 1 || live_count >= 4 ){
            tmp.at( i ).despawn();
          }

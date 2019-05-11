@@ -8,12 +8,12 @@ class Cell{
     bool isAlive;
 
   public:
-    Cell( int x, int y ){
+    Cell( const int& x, const int& y ){
       pos = new Point( x, y );
       isAlive = ( ( rand() % 3 ) == 0 ) ? true : false;
     };
 
-    Cell( int x, int y, bool a){
+    Cell( const int& x, const int& y, const bool& a){
       pos = new Point( x, y );
       isAlive = a;
     };
@@ -26,8 +26,8 @@ class Cell{
       isAlive = false;
     }
 
-    int getX(){ return pos->x; }
-    int getY(){ return pos->y; }
-    bool getIsAlive(){ return isAlive; }
+    int getX(){ return pos->x; } const;
+    int getY(){ return pos->y; } const;
+    bool getIsAlive(){ return isAlive; } const;
 };
 
