@@ -1,3 +1,4 @@
+#pragma once
 #include<SDL2/SDL.h>
 #include<iostream>
 
@@ -8,14 +9,14 @@ class Game{
     int window_width;
     int window_height; 
     char* title; 
+    int xMouse, yMouse;
 
     //SDL Components
     SDL_Window* window; 
     SDL_Renderer* renderer;
 
-    virtual void update(){};
+    virtual void update( double& dt ){};
     virtual void render(){};
-
     int initWindow(){
       window = SDL_CreateWindow( title,
                    SDL_WINDOWPOS_CENTERED,
@@ -49,6 +50,7 @@ class Game{
     };
 
     int initGame(){
+      std::cout << "initGame();" << std::endl;
 
       if(SDL_Init(SDL_INIT_VIDEO) < 0)
       {
@@ -69,9 +71,10 @@ class Game{
 
     Game( int w=680, int h=480){
 
+      title = (char *)"Game";
       window_width  = w; 
       window_height = h; 
-
+      
       initGame();
     };
 
@@ -83,27 +86,5 @@ class Game{
 
       initGame();
     };
-
-    void start(){
-
-      bool keep_window_open = true;
-      
-      while(keep_window_open)
-      {
-        SDL_Event e;
-        while(SDL_PollEvent(&e) > 0)
-        {
-          switch(e.type)
-          {
-            case SDL_QUIT:
-              keep_window_open = false;
-              break;
-          }
-        }
-        update();
-        render();
-        // Add a 16msec delay to make our game run at ~60 fps
-        SDL_Delay( DELAY );
-      }
-    };
+    virtual void start(){};
 };
