@@ -8,6 +8,8 @@ ParticleStore *ps;
 void MyGame::start(){
   isPlaying = true;
 
+
+  processWindowInput();
   ps = new ParticleStore( STORE_SIZE, xMouse, yMouse );
 
   prevTime = time(0);

@@ -8,11 +8,11 @@ using std::vector;
 class ParticleStore{
 
   private:
-    const bool GRAVITY_ON = true;
-    const bool GRAVITY_REVERSE = true;
+    const bool GRAVITY_ON = false;
+    const bool GRAVITY_REVERSE = false;
     const int UPPER_TTL = 300;
     const int LOWER_TTL = 100;
-    const int P_WIDTH = 1;
+    const int P_WIDTH = 10;
     const double VELOCITY_RANGE = 1.2;
     const int MAX_COLOR = 256;
     vector<Particle> *particles; 

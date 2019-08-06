@@ -29,9 +29,9 @@ void ParticleStore::update( double dt, int x, int y ){
 
       if( GRAVITY_ON ){
         if(GRAVITY_REVERSE){
-          p.y = p.y + ( p.vy * dt ) + ( 0.5 * (-9.8) * dt ); 
+          p.y = p.y + ( p.vy * dt ) + ( 0.5 * (-9.8) * (dt*dt) ); 
         }else{
-          p.y = p.y + ( p.vy * dt ) + ( 0.5* (9.8) * dt ); 
+          p.y = p.y + ( p.vy * dt ) + ( 0.5* (9.8) * (dt*dt) ); 
         }
       }else{
         p.y  = p.y + ( p.vy * dt );
