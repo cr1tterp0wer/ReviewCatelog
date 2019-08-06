@@ -12,7 +12,7 @@ class ParticleStore{
     const bool GRAVITY_REVERSE = true;
     const int UPPER_TTL = 300;
     const int LOWER_TTL = 100;
-    const int P_WIDTH = 5;
+    const int P_WIDTH = 1;
     const double VELOCITY_RANGE = 1.2;
     const int MAX_COLOR = 256;
     vector<Particle> *particles; 

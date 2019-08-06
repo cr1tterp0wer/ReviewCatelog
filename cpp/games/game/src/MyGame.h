@@ -10,7 +10,7 @@ using std::endl;
 class MyGame : public Game{
 
   public:
-    const int STORE_SIZE = 1000;
+    const int STORE_SIZE = 10000;
     MyGame( int w, int h ) : Game( w, h) {}
     void start() override;
 
