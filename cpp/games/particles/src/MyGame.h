@@ -1,23 +1,21 @@
 #pragma once
 #include "Game.h"
-#include<ctime>
 #include<iostream>
 
-using std::time_t;
 using std::cout;
 using std::endl;
 
 class MyGame : public Game{
 
   public:
-    const int STORE_SIZE = 1000;
+    const int STORE_SIZE = 100;
     MyGame( int w, int h ) : Game( w, h) {}
     void start() override;
 
   private:
-    time_t currentTime;
-    time_t prevTime;
-    double elapsedTime;
+    Uint64 currentTime;
+    Uint64 prevTime;
+    double dt;
     SDL_Rect rect;
     bool isPlaying;
     

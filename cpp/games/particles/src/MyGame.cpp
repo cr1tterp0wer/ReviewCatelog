@@ -8,30 +8,31 @@ ParticleStore *ps;
 void MyGame::start(){
   isPlaying = true;
 
-
   processWindowInput();
   ps = new ParticleStore( STORE_SIZE, xMouse, yMouse );
 
-  prevTime = time(0);
-  double dt;
+  Uint64 currentTime = SDL_GetPerformanceCounter();
+  Uint64 prevTime = 0;
+  dt = 0;
+  
   while( isPlaying )
   {
-    currentTime = time(0);
-    elapsedTime = currentTime - prevTime;
-    dt = elapsedTime/DELAY;
-    
+    currentTime = prevTime;
+    currentTime = SDL_GetPerformanceCounter();
+    dt = (double)((currentTime - prevTime ) * 1000 / (double)SDL_GetPerformanceFrequency() );
+    dt = dt/1000;
     update( dt );
     render();
 
-    // Add a 16msec delay to make our game run at ~60 fps
     SDL_Delay( DELAY );
+    prevTime = currentTime;
   }
 }
 
 void MyGame::update( double& dt){
 
-  ps->update( dt, xMouse, yMouse );
   processInput();
+  ps->update( dt, xMouse, yMouse );
 }
 
 void MyGame::render(){

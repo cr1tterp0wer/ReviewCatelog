@@ -4,6 +4,8 @@
 #include "Particle.h"
 
 using std::vector;
+using std::cout;
+using std::endl;
 
 class ParticleStore{
 
@@ -13,7 +15,7 @@ class ParticleStore{
     const int UPPER_TTL = 300;
     const int LOWER_TTL = 100;
     const int P_WIDTH = 10;
-    const double VELOCITY_RANGE = 1.2;
+    const double VELOCITY_RANGE = 3;
     const int MAX_COLOR = 256;
     vector<Particle> *particles; 
 
@@ -27,4 +29,5 @@ class ParticleStore{
     int size();
     Particle& at( int i );
     Particle buildParticle( Particle& p, int x, int y );
+    Particle buildParticle( Particle& p, int x, int y, int ttl );
 };
