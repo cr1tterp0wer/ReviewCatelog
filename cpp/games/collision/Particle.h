@@ -9,7 +9,6 @@ class Particle{
     float accX;
     float accY;
     float elasticity;
-    float friction;
     int w;
     int h;
     

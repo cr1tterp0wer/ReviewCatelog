@@ -14,20 +14,18 @@ Particle::Particle(){
 
   this->x = r * 800;
   this->y = r * 400;
-  this->friction = 1;
   this->velX = r;
   this->velY = r*20;
   this->accY = 0.98;
   this->accX = 0;
-  this->w = 1;
-  this->h = 1;
+  this->w = 5;
+  this->h = 5;
   this->elasticity = 0.90;
 }
 
 Particle::Particle( float x, float y ){
   this->x = x;
   this->y = y;
-  this->friction = 0.155;
   this->velX = 0;
   this->velY = 0;
   this->accY = 0.98;
