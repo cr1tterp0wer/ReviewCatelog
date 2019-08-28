@@ -7,29 +7,26 @@ using std::cout;
 
 Particle::Particle(){
 
-
   std::random_device rd;
   std::mt19937 gen( rd() );
   std::uniform_real_distribution<> dis( 0, 1 );
   double r = dis( gen );
 
   this->x = r * 800;
-  this->y = 0;
-  this->energy = 1.00;
+  this->y = r * 400;
   this->friction = 1;
   this->velX = r;
-  this->velY = 0;
+  this->velY = r*20;
   this->accY = 0.98;
   this->accX = 0;
-  this->w = 5;
-  this->h = 5;
+  this->w = 1;
+  this->h = 1;
   this->elasticity = 0.90;
 }
 
 Particle::Particle( float x, float y ){
   this->x = x;
   this->y = y;
-  this->energy = 1.00;
   this->friction = 0.155;
   this->velX = 0;
   this->velY = 0;
@@ -45,6 +42,10 @@ void Particle::update( double& dt ){
   this->updateX( dt );
   this->updateY( dt );
   this->collisionCheck();
+  if( this->elasticity == 0 ){
+    this->elasticity = 0.90;
+    this->y = 0;
+  }
 }
 
 void Particle::collisionCheck(){
@@ -52,19 +53,13 @@ void Particle::collisionCheck(){
     this->y = this->y-1;
 
     this->velY = ( (-1 * this->elasticity) * this->velY );
-    if( this->velY < 0 && this->velY > -2.8 )
-      this->velY = 0;
+    if( this->velY < 0 && this->velY > -2.8 ){
+      this->elasticity = 0;
+    }
   }
   if( (this->x + this->w ) >= 800 ||
       (this->x) <= 0 ){
       this->velX = ( -1 * this->velX );
-  }
-}
-
-void Particle::decreaseEnergy( float e ){
-  this->energy -= e;
-  if( this->energy < 0.09 ){
-    this->energy = 0;
   }
 }
 

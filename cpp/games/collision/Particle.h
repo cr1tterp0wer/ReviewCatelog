@@ -8,7 +8,6 @@ class Particle{
     float velY;
     float accX;
     float accY;
-    float energy;
     float elasticity;
     float friction;
     int w;
@@ -16,7 +15,6 @@ class Particle{
     
     void updateX( double &dt );
     void updateY( double &dt );
-    void decreaseEnergy( float e );
     
   public:
     Particle();
