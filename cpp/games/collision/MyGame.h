@@ -2,6 +2,7 @@
 #include "Game.h"
 #include "Particle.h"
 #include<iostream>
+#include<vector>
 
 using std::cout;
 using std::endl;
@@ -19,7 +20,7 @@ class MyGame : public Game{
     double dt;
     SDL_Rect rect;
     bool isPlaying;
-    Particle *p;
+    std::vector<Particle> particles;
 
     void update( double& dt  ) override;
     void render() override;

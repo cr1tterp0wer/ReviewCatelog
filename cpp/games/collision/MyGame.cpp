@@ -4,13 +4,11 @@
 void MyGame::start(){
 
   isPlaying = true;
-  p = new Particle( 0, 0 );
-  p->setAccx( 0 );
-  p->setAccy( 0.98 );
-  p->setVelX( 0 );
-  p->setVelY( 0 );
-  p->setW( 50 );
-  p->setH( 50 );
+  
+  for( int i = 0; i < 1; i++ ){
+    Particle p( ( i * 7 ) , 0);
+    this->particles.push_back( p );
+  }
 
   processWindowInput();
 
@@ -39,7 +37,11 @@ void MyGame::start(){
 }
 
 void MyGame::update( double& dt){
-  p->update( dt );
+//  p->update( dt );
+  for( int i = 0; i < particles.size(); i++ ){
+    particles.at( i ).update( dt );
+  }
+
   processInput();
 }
 
@@ -51,15 +53,16 @@ void MyGame::render(){
   // Clear the window
   SDL_RenderClear( renderer );
 
-  //Create a square
-  SDL_Rect r;
-  r.x = p->getX();
-  r.y = p->getY();
-  r.w = 50.0;
-  r.h = 50.0;
-  SDL_SetRenderDrawColor( renderer, 255, 255, 255, 255 );
-  SDL_RenderFillRect( renderer, &r );
-
+  //Create particles
+  for( int i = 0; i < particles.size(); i++ ){
+    SDL_Rect r;
+    r.x = particles.at( i ).getX();
+    r.y = particles.at( i ).getY();
+    r.w = particles.at( i ).getW();
+    r.h = particles.at( i ).getH();
+    SDL_SetRenderDrawColor( renderer, 255, 255, 255, 255 );
+    SDL_RenderFillRect( renderer, &r );
+  }
   // Render the changes above
   SDL_RenderPresent( renderer );
 }

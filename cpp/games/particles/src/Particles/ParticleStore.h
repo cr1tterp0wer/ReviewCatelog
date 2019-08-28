@@ -10,12 +10,13 @@ using std::endl;
 class ParticleStore{
 
   private:
-    const bool GRAVITY_ON = false;
+    const bool GRAVITY_ON = true;
     const bool GRAVITY_REVERSE = false;
     const int UPPER_TTL = 300;
     const int LOWER_TTL = 100;
-    const int P_WIDTH = 10;
-    const double VELOCITY_RANGE = 3;
+    const int P_WIDTH = 5;
+    const double VELOCITY_RANGE_X = 3;
+    const double VELOCITY_RANGE_Y = -4;
     const int MAX_COLOR = 256;
     vector<Particle> *particles; 
 

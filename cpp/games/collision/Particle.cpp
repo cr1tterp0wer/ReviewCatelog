@@ -7,6 +7,14 @@ using std::cout;
 Particle::Particle( float x, float y ){
   this->x = x;
   this->y = y;
+  this->energy = 1.00;
+  this->friction = 0.0155;
+  this->velX = 0;
+  this->velY = 0;
+  this->accY = 0.98;
+  this->accX = 0;
+  this->w = 5;
+  this->h = 5;
 }
 Particle::~Particle(){}
 
@@ -19,8 +27,20 @@ void Particle::update( double& dt ){
 void Particle::collisionCheck(){
 
   if( ( this->y + this->h ) >= 400 ) {
-    this->y = this->y - 1;
-    this->velY = ( -1 * this->velY ) * 0.90;
+    if( this->energy <= 0 ){
+      this->y = 400 - this->h; 
+    }else{
+      this->decreaseEnergy( this->friction );
+      this->y = this->y - 1;
+      this->velY = ( -1 * this->velY ) * ( this->energy );
+    }
+  }
+}
+
+void Particle::decreaseEnergy( float e ){
+  this->energy -= e;
+  if( this->energy < 0.09 ){
+    this->energy = 0;
   }
 }
 

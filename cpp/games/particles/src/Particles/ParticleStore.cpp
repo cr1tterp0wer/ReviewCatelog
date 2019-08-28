@@ -63,8 +63,8 @@ Particle ParticleStore::buildParticle( Particle& p ,int  x,int y ){
     p.y = y;
     p.vx = ( posNegRand() ) ? (-1) * ( (double) rand() / RAND_MAX ) : (double) rand()/RAND_MAX; 
     p.vy = ( posNegRand() ) ? (-1) * ( (double) rand() / RAND_MAX ) : (double) rand()/RAND_MAX; 
-    p.vx = p.vx * VELOCITY_RANGE;
-    p.vy = p.vy * VELOCITY_RANGE;
+    p.vx = p.vx * VELOCITY_RANGE_X;
+    p.vy = p.vy * VELOCITY_RANGE_Y;
     return p;
 }
 
@@ -82,8 +82,8 @@ Particle ParticleStore::buildParticle( Particle& p ,int  x,int y, int ttl ){
     p.y = y;
     p.vx = ( posNegRand() ) ? (-1) * ( (double) rand() / RAND_MAX ) : (double) rand()/RAND_MAX; 
     p.vy = ( posNegRand() ) ? (-1) * ( (double) rand() / RAND_MAX ) : (double) rand()/RAND_MAX; 
-    p.vx = p.vx * VELOCITY_RANGE;
-    p.vy = p.vy * VELOCITY_RANGE;
+    p.vx = p.vx * VELOCITY_RANGE_X;
+    p.vy = p.vy * VELOCITY_RANGE_Y;
     return p;
 }
 
