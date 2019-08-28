@@ -5,8 +5,8 @@ void MyGame::start(){
 
   isPlaying = true;
   
-  for( int i = 0; i < 1; i++ ){
-    Particle p( ( i * 7 ) , 0);
+  for( int i = 0; i < 10; i++ ){
+    Particle p;
     this->particles.push_back( p );
   }
 

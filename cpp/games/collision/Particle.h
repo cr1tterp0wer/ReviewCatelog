@@ -9,6 +9,7 @@ class Particle{
     float accX;
     float accY;
     float energy;
+    float elasticity;
     float friction;
     int w;
     int h;
@@ -18,6 +19,7 @@ class Particle{
     void decreaseEnergy( float e );
     
   public:
+    Particle();
     Particle( float x, float y );
     virtual ~Particle();
 
