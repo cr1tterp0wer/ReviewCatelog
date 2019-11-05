@@ -66,4 +66,4 @@ Thumbs.db
 .ddev/*
 web/package-lock.json
 web/sites/default/.gitignore
-
+rails/*/tmp/*
