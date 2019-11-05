@@ -4,6 +4,10 @@
   <% end %>
 
   <h1>Your Pragmatic Catalog</h1>
+  <% if session[:counter] > 5 %>
+    <%= session[:counter] %>
+  <% end %>
+
   <ul class="catalog">
     <% cache @products do %>
 

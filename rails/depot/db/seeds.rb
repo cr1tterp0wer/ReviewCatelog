@@ -26,3 +26,37 @@ Product.create!( title: "Seven Deadly Sins",
   image_url: 'ruby.jpg',
   price: 26.00
 )
+
+Product.create!( title: "Ruby On Rails 1.9!",
+  description: 
+  %{<p>
+    <em>Native Apps, Multiple Platforms</em>
+    Answer the question “Can we build this
+    for ALL the devices?” with a resounding YES.
+    This book will help you get there with a 
+    real-world introduction to seven platforms, 
+    whether you’re new to mobile or an experienced 
+    developer needing to expand your options. 
+    Plus, you’ll find out which cross-platform 
+    solution makes the most sense for your needs. </p>
+  },
+  image_url: 'ruby.jpg',
+  price: 26.00
+)
+
+Product.create!( title: "Ruby 2.3.8",
+  description: 
+  %{<p>
+    <em>Native Apps, Multiple Platforms</em>
+    Answer the question “Can we build this
+    for ALL the devices?” with a resounding YES.
+    This book will help you get there with a 
+    real-world introduction to seven platforms, 
+    whether you’re new to mobile or an experienced 
+    developer needing to expand your options. 
+    Plus, you’ll find out which cross-platform 
+    solution makes the most sense for your needs. </p>
+  },
+  image_url: 'ruby.jpg',
+  price: 26.00
+)
