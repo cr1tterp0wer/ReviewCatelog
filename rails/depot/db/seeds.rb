@@ -23,6 +23,6 @@ Product.create!( title: "Seven Deadly Sins",
     Plus, you’ll find out which cross-platform 
     solution makes the most sense for your needs. </p>
   },
-  image_url: '7apps.jpg',
+  image_url: 'ruby.jpg',
   price: 26.00
 )
