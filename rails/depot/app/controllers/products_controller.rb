@@ -1,6 +1,18 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
+  def who_bought
+    @product = Product.find(params[:id])
+    @latest_order = @product.orders.order(:updated_at).last
+
+    if stale?(@latest_order)
+      respond_to do |format|
+        format.atom
+      end
+    end
+  end
+
+
   # GET /products
   # GET /products.json
   def index
@@ -46,7 +58,7 @@ class ProductsController < ApplicationController
         format.json { render :show, status: :ok, location: @product }
 
         @products = Product.all
-        ActionCable.server.broadcast 'products', html: render_to_string('store/index', layout:false)
+        ActionCable.server.broadcast @products, html: render_to_string('store/index', layout:false)
       else
         format.html { render :edit }
         format.json { render json: @product.errors, status: :unprocessable_entity }
