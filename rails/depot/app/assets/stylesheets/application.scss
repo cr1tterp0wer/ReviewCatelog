@@ -116,6 +116,25 @@
   }
 }
 
+nav.logged_in_nav{
+  border-top:solid thin #bfb;
+  padding: 0.345em 0;
+  margin-top:0.345em;
+
+  input[type="submit"]{
+    background:none;
+    border:none;
+    color:#bfb;
+    font-size:1em;
+    letter-spacing: 0.345;
+    margin:0;
+    padding:0;
+    text-transform:uppercase;
+    &:hover{
+      color:white;
+    }
+  }
+}
 
 
 
